@@ -9,24 +9,26 @@
 - [ ] Add some sort of menu to access files and control playback
 
 
-# Resourcen
+# Resources
 
-## Theorie
+## Theory
 
-* [music.mcgill.ca](http://www.music.mcgill.ca/~ich/classes/mumt306/StandardMIDIfileformat.html) - Detaillierte Beschreibung des Aufbaus einer MIDI-Datei
+* [ccarh.org](http://www.ccarh.org/courses/253/handout/smf/) - Easy description of the MIDI file structure
 
-* [somascape.com](http://www.somascape.org/midi/tech/mfile.html) - Noch eine Beschreibung, jedoch nur teilweise relevant.
+* [music.mcgill.ca](http://www.music.mcgill.ca/~ich/classes/mumt306/StandardMIDIfileformat.html) - Another detailed description
 
-* [onetesla.com](http://onetesla.com/tesla-coil-faq) - Etwas Theorie zu MIDI-Interruptern
+* [somascape.com](http://www.somascape.org/midi/tech/mfile.html) - Another description, but only partially relevant
+
+* [onetesla.com](http://onetesla.com/tesla-coil-faq) - Some theory to MIDI-Interrupter
 
 
-## Projekte
+## Projects
 
-* [uzzors2k.com](http://uzzors2k.com/index.php?page=midiinterrupter) - Ein fertiges Projekt inkl. etwas Theorie und Code für eine Klasse E Teslaspule
+* [uzzors2k.com](http://uzzors2k.com/index.php?page=midiinterrupter) - A finished project incl. some theory and code for a class e tesla coil
 
-* [MMMZZZZ Github Projekt](https://github.com/MMMZZZZ/Syntherrupter/tree/dev/Documentation/Wiki#readme) - Sehr umfangreiches Projekt mit Code
+* [MMMZZZZ Github Projekt](https://github.com/MMMZZZZ/Syntherrupter/tree/dev/Documentation/Wiki#readme) - Very extensive project with code
 
-* [highvoltageforum.net](https://highvoltageforum.net/index.php?topic=105.msg557#msg557) - MIDI-Interrupter mit Code für Arduino Mega und Uno
+* [highvoltageforum.net](https://highvoltageforum.net/index.php?topic=105.msg557#msg557) - Code for Arduino Mega and Uno
 
 
 # Git commands
