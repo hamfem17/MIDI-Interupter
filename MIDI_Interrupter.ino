@@ -8,19 +8,24 @@ void setup() {
   Serial.begin(9600);
   Serial.println("Initialisirung der SD-Card....");
 
-  if(SD.begin(10) == 0)                                //D4
-  {
+  if(!SD.begin(10)) { //D4
       Serial.println("Initialisirung der SD-Card ist fehlgeschlagen");
       return;
   }
-  Serial.println("Initialisirung der SD-Card ist ervolgreich");
+  
+  Serial.println("Initialisirung der SD-Card ist erfolgreich");
 
-  Serial.println("Erstelle File......");
-
-  file = SD.open("Midi-Datei.txt", FILE_WRITE);
-  file.close();
+  if(!SD.exists("test.midi") {
+    Serial.println("Datei \"test.midi\" nicht vorhanden");
+  }
+  
+  file = SD.open("test.midi", FILE_READ);
 
   Serial.println("File erstellet");
+  for(int i = 0; i < 20; i++) {
+    Serial.println("i: ");
+    Serial.print((String)file.read());
+  }
 }
 
 void loop() {
