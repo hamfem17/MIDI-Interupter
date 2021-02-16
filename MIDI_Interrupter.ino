@@ -15,20 +15,21 @@ void setup() {
   
   Serial.println("Initialisirung der SD-Card ist erfolgreich");
 
-  if(!SD.exists("test.midi") {
-    Serial.println("Datei \"test.midi\" nicht vorhanden");
+  if(!SD.exists("ACDC_TNT.MID")) {
+    Serial.println("Datei \"ACDC_TNT.MID\" nicht vorhanden");
   }
   
-  file = SD.open("test.midi", FILE_READ);
+  file = SD.open("ACDC_TNT.MID");
 
-  Serial.println("File erstellet");
-  for(int i = 0; i < 20; i++) {
-    Serial.println("i: ");
-    Serial.print((String)file.read());
+  for(int i = 0; file.available(); i++) {
+    Serial.print(i);
+    Serial.print(": ");
+    Serial.println((String)file.read());
   }
+  file.close();
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
+
 
 }
