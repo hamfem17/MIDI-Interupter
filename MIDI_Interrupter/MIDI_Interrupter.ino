@@ -20,8 +20,40 @@ void setup() {
   }
   
   file = SD.open("ACDC_TNT.MID");
-
-  for(int i = 0; file.available(); i++) {
+  
+  uint8_t buf[4];
+  
+  for(int i = 0; i < 4; i++)
+  {
+    buf[3 - i] = file.read(); 
+    Serial.println(buf[3 - i]);//header
+  }
+  
+  if(*((unsigned long int *) buf) != 1297377380)
+  {
+    Serial.println("Falsch");
+  }
+  else
+  {
+    Serial.println("Richtig");
+  }
+  
+  for(int i = 0; i < 4; i++)
+  {
+    buf[3 - i] = file.read(); 
+    Serial.println(buf[3 - i]);//header lenght
+  }
+  
+  if(*((unsigned long int *) buf) != 6)
+  {
+    Serial.println("Falsch");
+  }
+  else
+  {
+    Serial.println("Richtig");
+  }
+  
+  for(int i = 5; file.available(); i++) {
     Serial.print(i);
     Serial.print(": ");
     Serial.println((String)file.read());
