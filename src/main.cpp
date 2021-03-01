@@ -3,13 +3,23 @@
 
 File file;
 
-int readBytes(const int length) {
-    if(length > sizeof(int)) {
+long int readBytes(const int length) {
+    if(length > sizeof(long int)) {
 		return -1;
 	}
-	int value = 0;
+
+	long int value = 0;
     for(int i = 0; i < length; i++) {
-		value += (file.read() << (length - i - 1));
+
+		long int hex = (file.read() << 8 * (length - i - 1));
+    Serial.println(hex,HEX);
+
+
+    long int k = 0x4D << 16;
+
+    if(k == 0)Serial.println("Hi");
+
+    Serial.println(k,HEX);
     }
 	return value;
 }
@@ -31,7 +41,9 @@ void setup() {
   }
   
   file = SD.open("ACDC_TNT.MID");
-    
+
+  Serial.println(readBytes(4));
+
   if(readBytes(4) != 1297377380) { //Check header string
     Serial.println("[Error]: Invalid header string");
   }
