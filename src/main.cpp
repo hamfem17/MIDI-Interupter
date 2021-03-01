@@ -3,75 +3,65 @@
 
 File file;
 
+int readBytes(const int length) {
+    if(length > sizeof(int)) {
+		return -1;
+	}
+	int value = 0;
+    for(int i = 0; i < length; i++) {
+		value += (file.read() << (length - i - 1));
+    }
+	return value;
+}
+
 void setup() {
 
   Serial.begin(9600);
-  Serial.println("Initialisirung der SD-Card....");
+  Serial.println("Initializing SD card");
 
-  if(!SD.begin(10)) { //D4
-      Serial.println("Initialisirung der SD-Card ist fehlgeschlagen");
+  if(!SD.begin(10)) { //PD4
+      Serial.println("[Error]: Could not initialize SD card!");
       return;
   }
   
-  Serial.println("Initialisirung der SD-Card ist erfolgreich");
+  Serial.println("Successfully initialized SD card");
 
   if(!SD.exists("ACDC_TNT.MID")) {
-    Serial.println("Datei \"ACDC_TNT.MID\" nicht vorhanden");
+    Serial.println("File \"ACDC_TNT.MID\" not found");
   }
   
   file = SD.open("ACDC_TNT.MID");
-  
-  uint8_t buf[4];
-  
-  for(int i = 0; i < 4; i++)
-  {
-    buf[3 - i] = file.read();
-    //Serial.println(buf[3 - i],HEX);//header
+    
+  if(readBytes(4) != 1297377380) { //Check header string
+    Serial.println("[Error]: Invalid header string");
+  }
+  else {
+    Serial.println("Header string correct");
   }
   
-  if(*((unsigned long int *) buf) != 1297377380)
-  {
-    Serial.println("Header invalid");
+  if(readBytes(4) != 6) { //Check header length
+    Serial.println("[Error]: Invalid header lenght!");
   }
-  else
-  {
-    Serial.println("Header correct");
-  }
-  
-  for(int i = 0; i < 4; i++)
-  {
-    buf[3 - i] = file.read(); 
-    //Serial.println(buf[3 - i],HEX);//header lenght
-  }
-  
-  if(*((unsigned long int *) buf) != 6)
-  {
-    Serial.println("Header lenght invalid");
-  }
-  else
-  {
+  else {
     Serial.println("Header lenght correct");
   }
 
-  for(int i = 0; i < 2; i++)
-  {
-    buf[1 - i] = file.read(); 
-    //Serial.println(buf[1 - i],HEX);// Format
-  }
-
-  switch(*((unsigned long int *) buf))
-  {
-    case 0: Serial.println("Single track file format not supported yet "); break; 
-    case 1: Serial.println("Format correct!"); break;
-    case 2: Serial.println("Multiple song file format not suported yet!"); break;
-  }
-  
-  for(int i = 0; i < 2; i++)
-  {
-    buf[1 - i] = file.read(); 
-    Serial.println(buf[1 - i],HEX);//number of track chunks that follow the header chunk 
+  switch(readBytes(2)) { //Check file format
+    case 0: 
+		Serial.println("Single track file format not supported yet ");
+		break; 
+    case 1:
+		Serial.println("Format correct!");
+		break;
+    case 2:
+		Serial.println("Multiple song file format not suported yet!");
+		break;
+	default:
+		Serial.println("[Error]: Invalid file format!");
   }
   
+  Serial.print("Number of track chunks that follow the header chunk: "); //Read number of track chunks
+  Serial.println(readBytes(2));
   
   for(int i = 9; i < 100; i++) {
     Serial.print(i);
