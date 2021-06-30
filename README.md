@@ -19,6 +19,8 @@
 
 * [somascape.com](http://www.somascape.org/midi/tech/mfile.html) - Another description, but only partially relevant
 
+* [onetesla.com](http://onetesla.com/tesla-coil-faq) - Some theory to MIDI-Interrupter  
+
 * [onetesla.com](http://onetesla.com/tesla-coil-faq) - Some theory to MIDI-Interrupter
 
 
@@ -28,7 +30,7 @@
 
 * [MMMZZZZ Github Projekt](https://github.com/MMMZZZZ/Syntherrupter/tree/dev/Documentation/Wiki#readme) - Very extensive project with code
 
-* [highvoltageforum.net](https://highvoltageforum.net/index.php?topic=105.msg557#msg557) - Code for Arduino Mega and Uno
+* [wolles-elektronikkiste.de](https://wolles-elektronikkiste.de/atmega328p-standalone-betreiben) - ATmega328P standalone betreiben
 
 
 # Git commands
